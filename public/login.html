@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Library — Login</title>
+  <link rel="stylesheet" href="main.css" />
+</head>
+<body>
+  <div class="container" style="max-width:700px;margin:40px auto">
+    <h1>Library — Login</h1>
+    <div id="login-message" class="hidden" style="color:red;margin-bottom:8px"></div>
+
+    <form id="login-form">
+      <label>Username<br />
+        <input id="login-username" type="text" required />
+      </label>
+      <br /><br />
+      <label>Password<br />
+        <input id="login-password" type="password" required />
+      </label>
+      <br /><br />
+      <button type="submit">Login</button>
+    </form>
+
+    <p style="margin-top:16px;color:#666">
+      Default admin: <strong>admin / admin123</strong> (created on first run).
+    </p>
+    <p><a href="/app">Back to app (if logged in)</a></p>
+  </div>
+
+  <script>
+  // inline very small login script so page loads quickly
+  document.getElementById('login-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const msg = document.getElementById('login-message');
+    msg.classList.add('hidden'); msg.textContent = '';
+    const username = document.getElementById('login-username').value.trim();
+    const password = document.getElementById('login-password').value;
+    try {
+      const res = await fetch('/api/login', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({ username, password })
+      });
+      const data = await res.json();
+      if (!res.ok) { msg.textContent = data.error || 'Login failed'; msg.classList.remove('hidden'); return; }
+      // store user info in localStorage
+      localStorage.setItem('user', JSON.stringify({ username: data.username, role: data.role }));
+      // redirect to app
+      window.location.href = '/app';
+    } catch (err) {
+      msg.textContent = err.message; msg.classList.remove('hidden');
+    }
+  });
+  </script>
+</body>
+</html>

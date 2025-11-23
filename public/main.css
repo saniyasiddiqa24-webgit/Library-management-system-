@@ -1,0 +1,13 @@
+/* main.css */
+body { font-family: Arial, sans-serif; margin: 12px; color: #222; }
+.container { max-width: 1000px; margin: 0 auto; }
+.card { background: #fff; border-radius:6px; padding:16px; margin:12px 0; box-shadow:0 1px 4px rgba(0,0,0,0.06); }
+label { display:block; margin:6px 0; }
+input { padding:6px; width: 100%; max-width:380px; margin-top:4px; }
+table { width:100%; border-collapse:collapse; margin-top:12px; }
+th, td { text-align:left; padding:8px; border-bottom:1px solid #eee; }
+button { padding:8px 10px; margin-right:6px; cursor:pointer; }
+.hidden { display:none; }
+.form-actions { margin-top:8px; }
+#message { padding:10px; border-radius:4px; margin-bottom:12px; display:inline-block; }
+#user-info { margin-right:12px; }
