@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "nodemon server.js"
+    "build": "echo no bulid step"
   },
   "dependencies": {
     "bcrypt": "^6.0.0",
