@@ -1,0 +1,8 @@
+services:
+  - type: web
+    name: library-management-system
+    env: node
+    region: oregon
+    buildCommand: "npm install && npm rebuild sqlite3 --build-from-source"
+    startCommand: "node server.js"
+    plan: free
